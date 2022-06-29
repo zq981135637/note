@@ -1,0 +1,16 @@
+git clone https://boringssl.googlesource.com/boringssl
+cd boringssl
+# 修改 boringssl根目录下的 CMakeLists.txt 添加 -fPIC 到 gcc 编译选项
+#   set(C_CXX_FLAGS "-fPIC -Werror -Wformat=2 -Wsign-compare -Wmissing-field-initializers -Wwrite-strings -Wvla")
+mkdir build
+cd build
+cmake ..
+make
+
+# 下载 https://curl.se/download/curl-7.65.3.tar.gz
+
+tar xzfv curl-7.65.3.tar.gz
+cd curl-7.65.3
+./configure --with-ssl=/root/boringssl
+make
+sudo make install
